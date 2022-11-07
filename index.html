@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cazum8 Videos</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="videos_data.js"></script>
+
+    <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+    <div style="height: 100%">
+        <div class="flex">
+            <div class="center">
+                <h2 class="button" id="change-order">Change Order</h2>
+                
+                <div class="grid" id="videos-grid">
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script>
+
+        function load_videos(){
+            $("#videos-grid").html("");
+
+            videos_data.forEach(function(data) {
+                $( "#videos-grid" ).append(`
+                    <div class="video">
+                        <div class="thumb-div">
+                            <img class="thumb" src="${data.thumb}">
+                            <p class="time">
+                                ${data.duracao}
+                            </p>
+                        </div>
+                        <p class="yt-title">
+                            ${data.titulo}
+                        </p>
+                        <p class="meta">
+                            ${data.views} • ${data.dataPublicacao}
+                        </p>
+                    </div>`
+                ).click(function() {
+                    window.open(data.url);
+                });;
+            });
+        }
+
+        $("#change-order").click(function(){
+            videos_data = videos_data.reverse()
+            load_videos()
+        })
+
+        load_videos()
+
+       
+
+    </script>
+</body>
+</html>
