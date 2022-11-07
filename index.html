@@ -32,10 +32,11 @@
         function load_videos(){
             $("#videos-grid").html("");
 
+            var index = 0;
             videos_data.forEach(function(data) {
                 $( "#videos-grid" ).append(`
-                    <div class="video">
-                        <div class="thumb-div">
+                    <div class="video" id="${index}">
+                        <div class="thumb-div" onclick="">
                             <img class="thumb" src="${data.thumb}">
                             <p class="time">
                                 ${data.duracao}
@@ -48,9 +49,13 @@
                             ${data.views} • ${data.dataPublicacao}
                         </p>
                     </div>`
-                ).click(function() {
+                );
+                
+                $("#" + index).click(function() {
                     window.open(data.url);
                 });;
+
+                index++
             });
         }
 
